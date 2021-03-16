@@ -3,11 +3,42 @@ import fetch from "isomorphic-unfetch";
 import { useState } from "react";
 import styled from "styled-components";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+`;
+
+const ToolbarWrapper = styled.div`
+  padding: 10px;
+
+  button {
+    height: 25px;
+    width: 100px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+
+  a {
+    margin-left: 15px;
+    text-decoration: none;
+  }
+`;
+
 const ImgWrapper = styled.div`
-  width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    margin: 5px;
+    width: 300px;
+  }
 `;
 
 const getCats = async ({ catId, pageIndex }) => {
@@ -37,21 +68,21 @@ const name = ({ catId, catsInfo }) => {
   };
 
   return (
-    <div>
-      <div>
+    <Container>
+      <ToolbarWrapper>
         <button type="button" onClick={onMore}>
           More...
         </button>
         <Link href="/">Move To '/'</Link>
-      </div>
+      </ToolbarWrapper>
       <ImgWrapper>
         {cats.map((c) => (
           <div key={c.id}>
-            <img src={c.url} width="300" />
+            <img src={c.url} />
           </div>
         ))}
       </ImgWrapper>
-    </div>
+    </Container>
   );
 };
 
